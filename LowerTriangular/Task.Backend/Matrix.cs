@@ -3,12 +3,12 @@
     public class Matrix
     {
         private int _order;
-        private int[,] _matrix;
+        private int[,] _matrixD;
 
         public Matrix(int order)
         {
             Order = order;
-            _matrix = new int[Order, Order];
+            _matrixD = new int[Order, Order];
         }
 
         public int Order
@@ -17,16 +17,6 @@
             set => _order = ValidateOrder(value);
         }
 
-        private int ValidateOrder(int order)
-        {
-            if (order <= 0)
-            {
-                throw new ArgumentOutOfRangeException(nameof(order),
-                    "The order of the matrix cannot be less than 1");
-            }
-
-            return order;
-        }
 
         public void FillMatrix()
         {
@@ -34,7 +24,7 @@
             {
                 for (int j = 0; j < Order; j++)
                 {
-                    _matrix[i, j] = i + j;
+                    _matrixD[i, j] = i + j;
                 }
             }
         }
@@ -45,7 +35,7 @@
             {
                 for (int j = 0; j < Order; j++)
                 {
-                    Console.Write($"{_matrix[i, j],4} ");
+                    Console.Write($"{_matrixD[i, j],4} ");
                 }
 
                 Console.WriteLine();
@@ -58,11 +48,22 @@
             {
                 for (int j = 0; j <= i; j++)
                 {
-                    Console.Write($"{_matrix[i, j],4} ");
+                    Console.Write($"{_matrixD[i, j],4} ");
                 }
 
                 Console.WriteLine();
             }
+        }
+
+        private int ValidateOrder(int order)
+        {
+            if (order <= 0)
+            {
+                throw new ArgumentOutOfRangeException(nameof(order),
+                    "The order of the matrix cannot be less than 1");
+            }
+
+            return order;
         }
     }
 }
